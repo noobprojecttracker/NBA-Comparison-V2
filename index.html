@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="
+    https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js
+    "></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="first">
+            <h1>2022-2023 Player Comparison</h1>
+        </div>
+
+
+        <div class="second">
+            <div class="align-list">
+            <input id="player1" class="input1" type="text" placeholder="Player 1 name" spellcheck="false">
+            <ul class="autocomplete-list" id="list-1">
+            </ul>
+            </div>
+        </div>
+
+
+        <div class="third">
+            <div class="align-list">
+            <input id="player2" class="input2" type="text" placeholder="Player 2 name" spellcheck="false">
+            <ul class="autocomplete-list" id="list-2">
+            </ul>
+            </div>
+        </div>
+
+
+        <div class="fourth">
+            <button class="compare-button" onclick="main()">Compare</button>
+        </div>
+
+        
+        <div class="fifth">
+            <h2 id="statement">View the player's stats below once you press compare</h2>
+        </div>
+
+
+        <div class="sixth">
+            <canvas id="chart1"></canvas>
+        </div>
+
+
+        <div class="seventh">
+            <canvas id="chart2"></canvas>
+        </div>
+    </div>
+
+
+    <script src="scripts.js"></script>
+
+    <script>
+
+    </script>
+</body>
+</html>
