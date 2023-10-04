@@ -16,6 +16,8 @@ const list2 = document.getElementById('list-2');
 const statement = document.getElementById('statement');
 
 
+
+
 // Add an event listener to the input field to track when a user types into the field. When a user types, generate a list of possible players they could be searching for and reform the list to include this data.
 player1Name.addEventListener('input', function(){
     const filteredData = filterData(players, player1Name.value);
@@ -89,19 +91,15 @@ function random(elementID){
 }
 
 
-
-
-
-
-function formChart(name1, name2, stats1, stats2){
-    var ctx = document.getElementById('chart1').getContext('2d');
+function defaultChart(chart1, chart2){
+    var ctx = chart1.getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['PPG','APG', 'RPG'],
             datasets: [{
-                label: `${name1}`,
-                data: [stats1[0], stats1[1], stats1[2]],
+                label: `Player 1`,
+                data: [18, 7, 5],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 99, 132, 0.2)',
@@ -115,8 +113,8 @@ function formChart(name1, name2, stats1, stats2){
                 borderWidth: 1
             }, 
             {
-                label: `${name2}`,
-                data: [stats2[0], stats2[1], stats2[2]],
+                label: `Player 2`,
+                data: [25, 12, 4],
                 backgroundColor: [
                     'rgba(155, 99, 132, 0.2)',
                     'rgba(155, 99, 132, 0.2)',
@@ -142,21 +140,14 @@ function formChart(name1, name2, stats1, stats2){
             }
         }
     })
-
-}
-
-
-
-
-function formSecondChart(name1, name2, stats1, stats2){
-    var ctx = document.getElementById('chart2').getContext('2d');
-    const myChart = new Chart(ctx, {
+    var ctx2 = chart2.getContext('2d');
+    const myChart2 = new Chart(ctx2, {
         type: 'bar',
         data: {
             labels: ['FG%','3PT%', 'FT%'],
             datasets: [{
-                label: `${name1}`,
-                data: [stats1[3], stats1[4], stats1[5]],
+                label: `Player 1`,
+                data: [.38, .33, .74],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 99, 132, 0.2)',
@@ -170,8 +161,8 @@ function formSecondChart(name1, name2, stats1, stats2){
                 borderWidth: 1
             }, 
             {
-                label: `${name2}`,
-                data: [stats2[3], stats2[4], stats2[5]],
+                label: `Player 2`,
+                data: [.49, .41, .92],
                 backgroundColor: [
                     'rgba(155, 99, 132, 0.2)',
                     'rgba(155, 99, 132, 0.2)',
@@ -198,42 +189,69 @@ function formSecondChart(name1, name2, stats1, stats2){
         }
     })
 
+    return [myChart, myChart2];
+
 }
 
+// Get the chart locations
+const chart1 = document.getElementById('chart1');
+const chart2 = document.getElementById('chart2');
+var x = defaultChart(chart1, chart2);
+
+
+function updateChart(chart, name1, name2, stats1, stats2){
+    chart.data.datasets[0].label = name1;
+    chart.data.datasets[0].data = [stats1[0], stats1[1], stats1[2]];
+
+
+    chart.data.datasets[1].label = name2;
+    chart.data.datasets[1].data = [stats2[0], stats2[1], stats2[2]];
+
+    chart.update()
+}
+
+function updateChart2(chart, name1, name2, stats1, stats2){
+    chart.data.datasets[0].label = name1;
+    chart.data.datasets[0].data = [stats1[3], stats1[4], stats1[5]];
+
+    chart.data.datasets[1].label = name2;
+    chart.data.datasets[1].data = [stats2[3], stats2[4], stats2[5]];
+
+    chart.update();
+}
 
 
 
 function main(){
-    const p1 = player1Name.value;
-    const p2 = player2Name.value;
+    const p1Name = player1Name.value;
+    const p2Name = player2Name.value;
     var arr;
 
     Promise.all(
-        [getID(p1), getID(p2)]).then(
+        [getID(p1Name), getID(p2Name)]).then(
             ([id1, id2]) => 
             
             Promise.all(
             [getData(id1), getData(id2)])).then(
                 ([data1, data2]) =>
                 
-                formChart(p1, p2, data1, data2)
+                updateChart(x[0], p1Name, p2Name, data1, data2)
             )
 
     Promise.all(
-        [getID(p1), getID(p2)]).then(
+        [getID(p1Name), getID(p2Name)]).then(
             ([id1, id2]) => 
             
             Promise.all(
             [getData(id1), getData(id2)])).then(
                 ([data1, data2]) =>
                 
-                formSecondChart(p1, p2, data1, data2)
+                updateChart2(x[1], p1Name, p2Name, data1, data2)
             )
     
-    statement.innerHTML = `View ${p1} vs ${p2}'s stats compared below...`;
+    statement.innerHTML = `View ${p1Name} vs ${p2Name}'s stats compared below...`;
 
 }
-
 
 
 
