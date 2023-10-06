@@ -6,6 +6,12 @@ In summary, you can enter 2 different players in their respective input fields, 
 
 The project can be viewed here => https://noobprojecttracker.github.io/NBA-Comparison-V2/
 
+The below image is an updated screenshot of what it looks like to compare Jayson Tatum and Jimmy Butler's stats.
+
+<img width="1440" alt="Screen Shot 2023-10-06 at 6 52 50 PM" src="https://github.com/noobprojecttracker/NBA-Comparison-V2/assets/111490153/0f0620fe-15c5-4660-9e40-e8aec3621f09">
+
+
+Original View:
 Below, you can see an example of the output when the user compares Lebron James and Austin Reaves's stats.
 
 <img width="1440" alt="Screen Shot 2023-10-04 at 10 23 10 PM" src="https://github.com/noobprojecttracker/NBA-Comparison-V2/assets/111490153/93b92fdb-4520-4765-9da0-1dcf60f5a89d">
